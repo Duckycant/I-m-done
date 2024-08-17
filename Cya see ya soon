@@ -1,77 +1,77 @@
-local _0x1 = game.Players.LocalPlayer
-local _0x2 = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local _0x3 = _0x2:MakeWindow({Name = "Cat piece Hub (made by ducky)", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local _0x0 = game.Players.LocalPlayer
+local _0x1 = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local _0x2 = _0x1:MakeWindow({Name = "Cat piece Hub (made by ducky)", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
--- Tab Creation
-local _0x4 = _0x3:MakeTab({Name = "Player hub", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local _0x5 = _0x4:AddSection({Name = "LocalPlayer"})
-_0x2:MakeNotification({Name = "Welcome!", Content = "Welcome to my hub!", Image = "rbxassetid://4483345998", Time = 5})
-_0x4:AddButton({Name = "High Speed", Callback = function() _0x1.Character.Humanoid.WalkSpeed = 500 end})
-_0x4:AddButton({Name = "High Jumppower", Callback = function() _0x1.Character.Humanoid.JumpPower = 100 end})
-_0x4:AddButton({Name = "Low Gravity", Callback = function() game.Workspace.Gravity = 10 end})
+-- Create Tab 1
+local _0x3 = _0x2:MakeTab({ Name = "Player hub", Icon = "rbxassetid://4483345998", PremiumOnly = false })
+local _0x4 = _0x3:AddSection({ Name = "LocalPlayer" })
+_0x1:MakeNotification({ Name = "Welcome!", Content = "Welcome to my hub!", Image = "rbxassetid://4483345998", Time = 5 })
+_0x3:AddButton({ Name = "High Speed", Callback = function() _0x0.Character.Humanoid.WalkSpeed = 500 end })
+_0x3:AddButton({ Name = "High Jumppower", Callback = function() _0x0.Character.Humanoid.JumpPower = 100 end })
+_0x3:AddButton({ Name = "Low Gravity", Callback = function() game.Workspace.Gravity = 10 end })
 
 -- Infinite Health
-local _0x6 = false
+local _0x5 = false
+local _0x6
 local _0x7
-local _0x8
 
-local function _0x9()
-    local _0xA = game.Players.LocalPlayer
-    local _0xB = _0xA.Character
-    if _0xB then
-        local _0xC = _0xB:FindFirstChildOfClass("Humanoid")
-        if _0xC then
-            _0xC.Health = math.huge
-            _0xC.MaxHealth = math.huge
+local function _0x8()
+    local _0x9 = game.Players.LocalPlayer
+    local _0xa = _0x9.Character
+    if _0xa then
+        local _0xb = _0xa:FindFirstChildOfClass("Humanoid")
+        if _0xb then
+            _0xb.Health = math.huge
+            _0xb.MaxHealth = math.huge
 
-            if _0x7 then
-                _0x7:Disconnect()
+            if _0x6 then
+                _0x6:Disconnect()
             end
 
-            _0x7 = _0xC:GetPropertyChangedSignal("Health"):Connect(function()
-                if _0x6 then
-                    _0xC.Health = math.huge
+            _0x6 = _0xb:GetPropertyChangedSignal("Health"):Connect(function()
+                if _0x5 then
+                    _0xb.Health = math.huge
                 end
             end)
 
-            _0xC:GetPropertyChangedSignal("MaxHealth"):Connect(function()
-                if _0x6 then
-                    _0xC.MaxHealth = math.huge
+            _0xb:GetPropertyChangedSignal("MaxHealth"):Connect(function()
+                if _0x5 then
+                    _0xb.MaxHealth = math.huge
                 end
             end)
         end
     end
 end
 
-_0x4:AddToggle({
+_0x3:AddToggle({
     Name = "Infinite Health",
     Default = false,
-    Callback = function(_0xD)
-        _0x6 = _0xD
+    Callback = function(_0xc)
+        _0x5 = _0xc
 
-        if _0x6 then
-            _0x9()
+        if _0x5 then
+            _0x8()
 
-            if _0x8 then
-                _0x8:Disconnect()
+            if _0x7 then
+                _0x7:Disconnect()
             end
-            _0x8 = game.Players.LocalPlayer.CharacterAdded:Connect(_0x9)
+            _0x7 = game.Players.LocalPlayer.CharacterAdded:Connect(_0x8)
         else
+            if _0x6 then
+                _0x6:Disconnect()
+                _0x6 = nil
+            end
             if _0x7 then
                 _0x7:Disconnect()
                 _0x7 = nil
             end
-            if _0x8 then
-                _0x8:Disconnect()
-                _0x8 = nil
-            end
 
-            local _0xA = game.Players.LocalPlayer
-            local _0xB = _0xA.Character
-            if _0xB then
-                local _0xC = _0xB:FindFirstChildOfClass("Humanoid")
-                if _0xC then
-                    _0xC.Health = _0xC.MaxHealth
+            local _0x9 = game.Players.LocalPlayer
+            local _0xa = _0x9.Character
+            if _0xa then
+                local _0xb = _0xa:FindFirstChildOfClass("Humanoid")
+                if _0xb then
+                    _0xb.Health = _0xb.MaxHealth
                 end
             end
         end
@@ -79,12 +79,12 @@ _0x4:AddToggle({
 })
 
 -- Swords & Accessories Tab
-local _0xE = _0x3:MakeTab({Name = "Swords & Accessories", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local _0xF = _0xE:AddSection({Name = "Get All Swords and Accessories"})
+local _0xd = _0x2:MakeTab({ Name = "Swords & Accessories", Icon = "rbxassetid://4483345998", PremiumOnly = false })
+local _0xe = _0xd:AddSection({ Name = "Get All Swords and Accessories" })
 
--- Swords Button
-_0xE:AddButton({Name = "Get All Swords", Callback = function()
-    local _0x10 = {
+-- Button to get all swords
+_0xd:AddButton({ Name = "Get All Swords", Callback = function()
+    local _0xf = {
         "ONEYEARSWORD", "Saber", "BlueScythe", "SaberV2", "MoltSword", "TripleYoru",
         "BattleAxe", "StrongSpear", "ColdSword", "EggSword", "BattleHammer",
         "RedScythe", "Katana", "DualKatana", "TripleKatana", "Kiribachi",
@@ -95,19 +95,19 @@ _0xE:AddButton({Name = "Get All Swords", Callback = function()
         "GojoSword"
     }
 
-    for _, _0x11 in ipairs(_0x10) do
-        local _0x12 = {
+    for _, _0x10 in ipairs(_0xf) do
+        local _0x11 = {
             [1] = "Buy",
-            [2] = _0x11,
+            [2] = _0x10,
             [3] = 0
         }
-        game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughASword"):FireServer(unpack(_0x12))
+        game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughASword"):FireServer(unpack(_0x11))
     end
-end})
+end })
 
--- Accessories Button
-_0xE:AddButton({Name = "Get All Accessories", Callback = function()
-    local _0x13 = {
+-- Button to get all accessories
+_0xd:AddButton({ Name = "Get All Accessories", Callback = function()
+    local _0x12 = {
         "Cat", "StrawHat", "KiddCape", "LucyHelmet", "KizaruCape", "PirateKingCape",
         "KaidoCape", "BigMomHat", "MihawkHat", "PinkCatHat", "BlackCatHat",
         "BlueCatHat", "DaValkyrieHelm", "SerpentValk", "SantaHat", "BraveHat",
@@ -115,210 +115,69 @@ _0xE:AddButton({Name = "Get All Accessories", Callback = function()
         "Snowmantophatred", "Snowmantophatgreen", "STRONGSHIELD", "WarpHat"
     }
 
-    for _, _0x14 in ipairs(_0x13) do
-        local _0x15 = {
+    for _, _0x13 in ipairs(_0x12) do
+        local _0x14 = {
             [1] = "Buy",
             [2] = "Diamond",
-            [3] = _0x14,
+            [3] = _0x13,
             [4] = 0
         }
-        game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAAccessory"):FireServer(unpack(_0x15))
+        game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAAccessory"):FireServer(unpack(_0x14))
     end
-end})
+end })
 
--- StrongSpear Button
-_0xE:AddButton({Name = "Add StrongSpear", Callback = function()
-    local _0x16 = {
+-- Button to add StrongSpear to inventory
+_0xd:AddButton({ Name = "Add StrongSpear", Callback = function()
+    local _0x15 = {
         [1] = "StrongSpear"
     }
-    game:GetService("ReplicatedStorage"):WaitForChild("SwordInventoryRemote"):WaitForChild("Inventory"):FireServer(unpack(_0x16))
-end})
+    game:GetService("ReplicatedStorage"):WaitForChild("SwordInventoryRemote"):WaitForChild("Inventory"):FireServer(unpack(_0x15))
+end })
 
--- StrongSword Button
-_0xE:AddButton({Name = "Add StrongSword", Callback = function()
-    local _0x17 = {
+-- Button to add StrongSword to inventory
+_0xd:AddButton({ Name = "Add StrongSword", Callback = function()
+    local _0x16 = {
         [1] = "StrongSword"
     }
-    game:GetService("ReplicatedStorage"):WaitForChild("SwordInventoryRemote"):WaitForChild("Inventory"):FireServer(unpack(_0x17))
-end})
+    game:GetService("ReplicatedStorage"):WaitForChild("SwordInventoryRemote"):WaitForChild("Inventory"):FireServer(unpack(_0x16))
+end })
 
--- Remove Negative Points Tab
-local _0x18 = _0x3:MakeTab({Name = "Remove Negative Points", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local _0x19 = _0x18:AddSection({Name = "Remove Negative Points"})
+-- Create tab for removing negative points
+local _0x17 = _0x2:MakeTab({ Name = "Remove Negative Points", Icon = "rbxassetid://4483345998", PremiumOnly = false })
+local _0x18 = _0x17:AddSection({ Name = "Remove Negative Points" })
 
--- Remove Negative Points Button
-_0x18:AddButton({Name = "Remove Negative Points", Callback = function()
-    local _0x1A = {
+-- Button to remove negative points
+_0x17:AddButton({ Name = "Remove Negative Points", Callback = function()
+    local _0x19 = {
         [1] = -10000000000000000000
     }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x1A))
-end})
+    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x19))
+end })
 
--- Max Stats V2 Tab
-local _0x1B = _0x3:MakeTab({Name = "Max Stats V2", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local _0x1C = _0x1B:AddSection({Name = "Max Stats V2"})
+-- Create tab for Max Stats V2
+local _0x1a = _0x2:MakeTab({ Name = "Max Stats V2", Icon = "rbxassetid://4483345998", PremiumOnly = false })
+local _0x1b = _0x1a:AddSection({ Name = "Max Stats V2" })
 
--- Max Stats Buttons
-_0x1B:AddButton({Name = "Set Max Stats v2 9qn", Callback = function()
-    local _0x1D = {
+-- Button to achieve max stats V2
+_0x1a:AddButton({ Name = "Set Max Stats v2 9qn", Callback = function()
+    local _0x1c = {
         [1] = -9000000000000000000
     }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x1D))
-end})
+    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x1c))
+end })
 
-_0x1B:AddButton({Name = "Set Max Stats v2 9qn", Callback = function()
-    local _0x1E = {
+-- Button to achieve max stats V2
+_0x1a:AddButton({ Name = "Set Max Stats v2 9qn", Callback = function()
+    local _0x1d = {
         [1] = 900000000000000000
     }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x1E))
-end})
+    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x1d))
+end })
 
-_0x1B:AddButton({Name = "Set Max Stats 9qd", Callback = function()
-    local _0x1F = {
+-- Button to set max stats
+_0x1a:AddButton({ Name = "Set Max Stats 9qd", Callback = function()
+    local _0x1e = {
         [1] = 90000000000000000
     }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x1F))
-end})
-
--- Set Points Tab
-local _0x20 = _0x3:MakeTab({Name = "Set Points", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local _0x21 = _0x20:AddSection({Name = "Set Points"})
-
-local _0x22 = 0
-
-_0x20:AddTextbox({
-    Name = "Enter Points",
-    Default = "",
-    TextDisappear = true,
-    Callback = function(_0x23)
-        _0x22 = tonumber(_0x23)
-        print("Points entered:", _0x22)
-    end
-})
-
-_0x20:AddButton({Name = "Set Points", Callback = function()
-    if _0x22 and _0x22 > 0 then
-        local _0x24 = {
-            [1] = _0x22
-        }
-        game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x24))
-        print("Points set to:", _0x22)
-    else
-        warn("Invalid points value")
-    end
-end})
-
--- Fruit Rewards Tab
-local _0x25 = _0x3:MakeTab({Name = "Fruit", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local _0x26 = _0x25:AddSection({Name = "Spin Rewards"})
-
--- Fruit Reward Buttons
-_0x25:AddButton({Name = "Claim Common Fruit Reward", Callback = function()
-    game:GetService("Players").LocalPlayer.PlayerGui.SpinUI.Chat.Yes.Spin.Reward:FireServer("Common")
-end})
-
-_0x25:AddButton({Name = "Claim Uncommon Fruit Reward", Callback = function()
-    game:GetService("Players").LocalPlayer.PlayerGui.SpinUI.Chat.Yes.Spin.Reward:FireServer("Uncommon")
-end})
-
-_0x25:AddButton({Name = "Claim Rare Fruit Reward", Callback = function()
-    game:GetService("Players").LocalPlayer.PlayerGui.SpinUI.Chat.Yes.Spin.Reward:FireServer("Rare")
-end})
-
-_0x25:AddButton({Name = "Claim Legendary Fruit Reward", Callback = function()
-    game:GetService("Players").LocalPlayer.PlayerGui.SpinUI.Chat.Yes.Spin.Reward:FireServer("Legendary")
-end})
-
--- Combat Styles Tab
-local _0x27 = _0x3:MakeTab({Name = "Combat", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local _0x28 = _0x27:AddSection({Name = "Buy Combat Styles"})
-
--- Combat Styles Buttons
-_0x27:AddButton({Name = "Buy Combat Style", Callback = function()
-    local _0x29 = {
-        [1] = "Buy",
-        [2] = "Combat",
-        [3] = 1
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAStyle"):FireServer(unpack(_0x29))
-end})
-
-_0x27:AddButton({Name = "Buy Electric Style", Callback = function()
-    local _0x2A = {
-        [1] = "Buy",
-        [2] = "Electric",
-        [3] = 17
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAStyle"):FireServer(unpack(_0x2A))
-end})
-
-_0x27:AddButton({Name = "Buy DragonTalon Style", Callback = function()
-    local _0x2B = {
-        [1] = "Buy",
-        [2] = "DragonTalon",
-        [3] = 10
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAStyle"):FireServer(unpack(_0x2B))
-end})
-
-_0x27:AddButton({Name = "Buy Cyborg Style", Callback = function()
-    local _0x2C = {
-        [1] = "Buy",
-        [2] = "Cyborg",
-        [3] = 17
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAStyle"):FireServer(unpack(_0x2C))
-end})
-
-_0x27:AddButton({Name = "Buy FishmanKarate Style", Callback = function()
-    local _0x2D = {
-        [1] = "Buy",
-        [2] = "FishmanKarate",
-        [3] = 17
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAStyle"):FireServer(unpack(_0x2D))
-end})
-
-_0x27:AddButton({Name = "Buy DarkLeg Style", Callback = function()
-    local _0x2E = {
-        [1] = "Buy",
-        [2] = "DarkLeg",
-        [3] = 7
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAStyle"):FireServer(unpack(_0x2E))
-end})
-
-_0x27:AddButton({Name = "Buy SuperHuman Style", Callback = function()
-    local _0x2F = {
-        [1] = "Buy",
-        [2] = "SuperHuman",
-        [3] = 1
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("BoughAStyle"):FireServer(unpack(_0x2F))
-end})
-
--- God Mode Tab
-local _0x30 = _0x3:MakeTab({Name = "God Mode", Icon = "rbxassetid://4483345998", PremiumOnly = false})
-local _0x31 = _0x30:AddSection({Name = "God Mode Controls"})
-
--- God Mode Buttons
-_0x30:AddButton({Name = "Set God mode", Callback = function()
-    local _0x32 = {
-        [1] = "MaxHealth"
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("StatSystem"):WaitForChild("Points"):FireServer(unpack(_0x32))
-end})
-
-_0x30:AddButton({Name = "god mode first Step", Callback = function()
-    local _0x33 = {
-        [1] = -9000000000000000000
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x33))
-end})
-
-_0x2:MakeNotification({
-    Name = "Setup Complete",
-    Content = "All tabs and buttons have been successfully added!",
-    Image = "rbxassetid://4483345998",
-    Time = 5
-})
+    game:GetService("ReplicatedStorage"):WaitForChild("BonusFolderFX"):WaitForChild("testingstats"):FireServer(unpack(_0x1e))
+end })
